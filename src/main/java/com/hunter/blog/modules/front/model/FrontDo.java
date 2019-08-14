@@ -12,75 +12,76 @@ import java.io.Serializable;
  */
 @Component
 public class FrontDo implements Serializable {
+
     /**
      * 首页key
      */
-    private String sys_key;
+    private String sysKey;
     /**
-     * 标题
+     * 名称
      */
-    private String sys_title;
+    private String sysName;
     /**
      * 头像
      */
-    private String sys_avatar;
+    private String sysValue;
     /**
      * 描述
      */
-    private String sys_desc;
+    private String sysDesc;
     /**
      * 是否删除
      */
-    private String is_deleted;
+    private String isDeleted;
 
-    public String getSys_key() {
-        return sys_key;
+    public String getSysKey() {
+        return sysKey;
     }
 
-    public void setSys_key(String sys_key) {
-        this.sys_key = sys_key;
+    public void setSysKey(String sysKey) {
+        this.sysKey = sysKey;
     }
 
-    public String getSys_title() {
-        return sys_title;
+    public String getSysName() {
+        return sysName;
     }
 
-    public void setSys_title(String sys_title) {
-        this.sys_title = sys_title;
+    public void setSysName(String sysName) {
+        this.sysName = sysName;
     }
 
-    public String getSys_avatar() {
-        return sys_avatar;
+    public String getSysValue() {
+        return sysValue;
     }
 
-    public void setSys_avatar(String sys_avatar) {
-        this.sys_avatar = sys_avatar;
+    public void setSysValue(String sysValue) {
+        this.sysValue = sysValue;
     }
 
-    public String getSys_desc() {
-        return sys_desc;
+    public String getSysDesc() {
+        return sysDesc;
     }
 
-    public void setSys_desc(String sys_desc) {
-        this.sys_desc = sys_desc;
+    public void setSysDesc(String sysDesc) {
+        this.sysDesc = sysDesc;
     }
 
-    public String getIs_deleted() {
-        return is_deleted;
+    public String getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIs_deleted(String is_deleted) {
-        this.is_deleted = is_deleted;
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     @Override
     public String toString() {
         return "FrontDo{" +
-                "sys_key='" + sys_key + '\'' +
-                ", sys_title='" + sys_title + '\'' +
-                ", sys_avatar='" + sys_avatar + '\'' +
-                ", sys_desc='" + sys_desc + '\'' +
-                ", is_deleted='" + is_deleted + '\'' +
+                "sysKey='" + sysKey + '\'' +
+                ", sysName='" + sysName + '\'' +
+                ", sysValue='" + sysValue + '\'' +
+                ", sysDesc='" + sysDesc + '\'' +
+                ", isDeleted='" + isDeleted + '\'' +
                 '}';
     }
 }

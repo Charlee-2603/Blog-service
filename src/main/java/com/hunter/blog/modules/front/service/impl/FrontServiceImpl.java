@@ -1,5 +1,6 @@
 package com.hunter.blog.modules.front.service.impl;
 
+import com.hunter.blog.modules.article.dao.IArticleDao;
 import com.hunter.blog.modules.front.dao.IFrontDao;
 import com.hunter.blog.modules.front.model.FrontDo;
 import com.hunter.blog.modules.front.service.IFrontService;
@@ -22,15 +23,29 @@ public class FrontServiceImpl implements IFrontService {
 
     @Autowired
     private IFrontDao frontDao;
+    @Autowired
+    private IArticleDao articleDao;
 
     @Override
-    public Map setHtml() {
+    public Map<String, Object> setHtml(Map<String, Object> map) {
         /**
-         * 获取博客的信息
+         * 获取首页基础信息
          */
-        Map<Object, Object> map = new HashMap<>();
-        List<FrontDo> blogArticle = frontDao.getSysConfig("blogArticle");
-        map.put("front", blogArticle);
+        map.put("baseInfo", frontDao.getSysConfig("baseInfo"));
+        /**
+         * 获取首页栏目列表
+         */
+        map.put("columnList", frontDao.getSysConfig("columnList"));
+        /**
+         * 获取首页栏目按钮
+         */
+        map.put("columnBtn", frontDao.getSysConfig("columnBtn"));
+
+        /**
+         * 获取首页文章
+         */
+        String condition = "";
+        map.put("articleList", articleDao.getArticle(""));
         return map;
     }
 }

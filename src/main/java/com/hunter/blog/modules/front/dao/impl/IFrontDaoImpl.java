@@ -1,7 +1,7 @@
-//package com.hunter.blog.modules.front.dao.impl;
+//package com.hunter.article.modules.front.dao.impl;
 //
-//import com.hunter.blog.core.database.sqlSession.IBaseDao;
-//import com.hunter.blog.modules.front.dao.IFrontDao;
+//import com.hunter.article.core.database.sqlSession.IBaseDao;
+//import com.hunter.article.modules.front.dao.IFrontDao;
 //import org.mybatis.spring.SqlSessionTemplate;
 //import org.mybatis.spring.annotation.MapperScan;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@
 // * @description
 // * @time 2019/8/13 14:21
 // */
-////@MapperScan("com/hunter/blog/modules/front/mapper/frontMapper.xml")
+////@MapperScan("com/hunter/article/modules/front/mapper/frontMapper.xml")
 //@Repository
 //public class IFrontDaoImpl implements IFrontDao {
 //

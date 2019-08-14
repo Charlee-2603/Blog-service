@@ -2,9 +2,8 @@ package com.hunter.blog.modules.front.dao;
 
 import com.hunter.blog.modules.front.model.FrontDo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -24,6 +23,5 @@ public interface IFrontDao {
      * @param sysKey
      * @return
      */
-    @Select("select * from sys_config where is_deleted = 1")
-    List<FrontDo> getSysConfig(String sysKey);
+    List<FrontDo> getSysConfig(@Param(value = "sysKey") String sysKey);
 }

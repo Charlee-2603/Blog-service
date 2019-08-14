@@ -1,5 +1,7 @@
 package com.hunter.blog.modules.front.service;
 
+import com.hunter.blog.modules.front.model.FrontDo;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.springframework.ui.ModelMap;
 
 import java.util.Map;
@@ -13,7 +15,8 @@ import java.util.Map;
 public interface IFrontService {
     /**
      * 设置首页内容
+     * @param map
      * @return
      */
-    Map setHtml();
+    Map setHtml(Map<String, Object> map);
 }
