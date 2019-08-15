@@ -26,7 +26,7 @@ public class ArticleController {
     @Autowired
     private IArticleService articleService;
 
-    @RequestMapping(value = "/getArticleByCondition", method = RequestMethod.GET)
+    @RequestMapping(value = "/getArticleByCondition", method = RequestMethod.POST)
     public String getArticleByCondition(@RequestParam(value = "condition", required = false) String condition) {
         System.out.println("\033[36;4m" + "getArticleByCondition()方法执行了..." + "\033[0m");
         System.out.println(condition);

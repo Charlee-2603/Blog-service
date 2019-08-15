@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hunter.blog.modules.article.dao.IArticleDao">
-    <select id="getArticle" parameterType="java.lang.String"  resultType="com.hunter.blog.modules.article.model.ArticleDo">
+    <select id="getArticle" parameterType="java.lang.String"
+            resultType="com.hunter.blog.modules.article.model.ArticleDo">
         SELECT
+        art_id AS artId,
         art_title AS artTitle,
+        art_content AS artContent,
         art_title_img AS artTitleImg,
         art_createTime AS artCreateTime,
         art_click_count AS artClickCount,
-        art_comment AS artComment,
-        art_content AS artConent
+        art_comment AS artComment
         FROM
         sys_article
         <where>
@@ -18,5 +20,6 @@
             AND is_deleted = 1 AND art_status = "已发布"
         </where>
         ORDER BY art_createTime desc
+        LIMIT 1,6
     </select>
 </mapper>
