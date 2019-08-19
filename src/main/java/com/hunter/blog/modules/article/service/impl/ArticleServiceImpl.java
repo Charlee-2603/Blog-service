@@ -24,4 +24,9 @@ public class ArticleServiceImpl implements IArticleService {
     public List<ArticleDo> getArticle(String condition) {
         return articleDao.getArticle(condition);
     }
+
+    @Override
+    public void saveArticle(ArticleDo articleDo) {
+        articleDao.saveArticle(articleDo);
+    }
 }

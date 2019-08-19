@@ -20,4 +20,9 @@ public interface IArticleService {
      */
     List<ArticleDo> getArticle(String condition);
 
+    /**
+     * 发布文章
+     * @param articleDo
+     */
+    void saveArticle(ArticleDo articleDo);
 }

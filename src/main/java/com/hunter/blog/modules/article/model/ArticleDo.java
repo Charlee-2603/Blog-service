@@ -111,8 +111,8 @@ public class ArticleDo {
                 ", artTitleImg='" + artTitleImg + '\'' +
                 ", artContent='" + artContent + '\'' +
                 ", artStatus='" + artStatus + '\'' +
-                ", isDeleted=" + isDeleted +
                 ", artClickCount=" + artClickCount +
+                ", isDeleted=" + isDeleted +
                 ", artComment='" + artComment + '\'' +
                 '}';
     }

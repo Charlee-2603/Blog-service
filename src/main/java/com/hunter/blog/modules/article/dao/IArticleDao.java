@@ -2,6 +2,7 @@ package com.hunter.blog.modules.article.dao;
 
 import com.hunter.blog.modules.article.model.ArticleDo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +22,10 @@ public interface IArticleDao {
      * @return
      */
     List<ArticleDo> getArticle(String condition);
+
+    /**
+     * 发布文章
+     * @param articleDo
+     */
+    void saveArticle(@Param("articleDo") ArticleDo articleDo);
 }

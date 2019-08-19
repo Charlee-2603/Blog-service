@@ -20,6 +20,14 @@
             AND is_deleted = 1 AND art_status = "已发布"
         </where>
         ORDER BY art_createTime desc
-        LIMIT 1,6
     </select>
+
+
+    <!-- 发布文章 -->
+    <insert id="saveArticle" parameterType="com.hunter.blog.modules.article.model.ArticleDo">
+        insert into
+            sys_article(art_title,art_content,art_status,art_channel,art_createTime)
+        values
+            (#{articleDo.artTitle},#{articleDo.artContent},#{articleDo.artStatus},#{articleDo.artChannel},#{articleDo.artCreateTime})
+    </insert>
 </mapper>
