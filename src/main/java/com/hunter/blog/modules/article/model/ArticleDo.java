@@ -14,7 +14,7 @@ public class ArticleDo {
     private String artChannel;
     private String artTitle;
     private String artCreateTime;
-    private String artTitleImg;
+    private String artTitleImgURL;
     private String artContent;
     private String artStatus;
     private int artClickCount;
@@ -53,12 +53,12 @@ public class ArticleDo {
         this.artCreateTime = artCreateTime;
     }
 
-    public String getArtTitleImg() {
-        return artTitleImg;
+    public String getArtTitleImgURL() {
+        return artTitleImgURL;
     }
 
-    public void setArtTitleImg(String artTitleImg) {
-        this.artTitleImg = artTitleImg;
+    public void setArtTitleImgURL(String artTitleImgURL) {
+        this.artTitleImgURL = artTitleImgURL;
     }
 
     public String getArtContent() {
@@ -108,7 +108,7 @@ public class ArticleDo {
                 ", artChannel='" + artChannel + '\'' +
                 ", artTitle='" + artTitle + '\'' +
                 ", artCreateTime='" + artCreateTime + '\'' +
-                ", artTitleImg='" + artTitleImg + '\'' +
+                ", artTitleImgURL='" + artTitleImgURL + '\'' +
                 ", artContent='" + artContent + '\'' +
                 ", artStatus='" + artStatus + '\'' +
                 ", artClickCount=" + artClickCount +

@@ -7,7 +7,7 @@
         art_id AS artId,
         art_title AS artTitle,
         art_content AS artContent,
-        art_title_img AS artTitleImg,
+        art_title_img_url AS artTitleImgURL,
         art_createTime AS artCreateTime,
         art_click_count AS artClickCount,
         art_comment AS artComment
@@ -26,8 +26,8 @@
     <!-- 发布文章 -->
     <insert id="saveArticle" parameterType="com.hunter.blog.modules.article.model.ArticleDo">
         insert into
-            sys_article(art_title,art_content,art_status,art_channel,art_createTime)
+            sys_article(art_title,art_content,art_status,art_channel,art_createTime,art_title_img_url)
         values
-            (#{articleDo.artTitle},#{articleDo.artContent},#{articleDo.artStatus},#{articleDo.artChannel},#{articleDo.artCreateTime})
+            (#{articleDo.artTitle},#{articleDo.artContent},#{articleDo.artStatus},#{articleDo.artChannel},#{articleDo.artCreateTime},#{articleDo.artTitleImgURL})
     </insert>
 </mapper>
