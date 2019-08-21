@@ -45,7 +45,34 @@ public class FrontServiceImpl implements IFrontService {
          * 获取首页文章
          */
         String condition = "";
-        map.put("articleList", articleDao.getArticle(""));
+        // 每页显示多少条记录
+        Integer pageSize = (Integer) map.get("pageSize");
+        // 当前第几页
+        Integer curPage = (Integer) map.get("curPage");
+        // 当前第几条
+        Integer pageNum = (curPage - 1) * pageSize;
+
+        System.out.println("当前页：" + pageNum + "," + pageSize);
+
+        // 查询总文章数
+        int total = articleDao.getArticleCount();
+        System.out.println(total);
+        int pageTotal = 0;
+
+        if (total % pageSize == 0) {
+            pageTotal = total / pageSize;
+        } else {
+            pageTotal = (total / pageSize) + 1;
+        }
+        System.out.println("pageTotal:" + pageTotal);
+
+        if (curPage > 0 && curPage < pageTotal) {
+            map.put("articleList", articleDao.getArticleList(condition, pageNum, pageSize));
+        } else if (curPage <= 0) {
+            map.put("articleList", articleDao.getArticleList(condition, 0, pageSize));
+        } else {
+            map.put("articleList", articleDao.getArticleList(condition, (pageTotal - 1) * pageSize, pageSize));
+        }
         return map;
     }
 }

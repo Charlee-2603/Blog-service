@@ -19,13 +19,38 @@ public interface IArticleDao {
     /**
      * 获取文章列表
      * @param condition
+     * @param curPage
+     * @param pageSize
      * @return
      */
-    List<ArticleDo> getArticle(String condition);
+    List<ArticleDo> getArticleList(@Param("condition") String condition,@Param("curPage") Integer curPage, @Param("pageSize") Integer pageSize);
 
     /**
      * 发布文章
+     *
      * @param articleDo
      */
     void saveArticle(@Param("articleDo") ArticleDo articleDo);
+
+    /**
+     * 根据文章ID获取文章的详细信息
+     *
+     * @param artId
+     * @return
+     */
+    ArticleDo getArticleById(@Param("artId") int artId);
+
+    /**
+     * 点击量 + 1
+     * @param artId
+     * @return
+     */
+    void updateClickCount(int artId);
+
+
+    /**
+     * 查询文章总数
+     * @return
+     */
+    int getArticleCount();
 }

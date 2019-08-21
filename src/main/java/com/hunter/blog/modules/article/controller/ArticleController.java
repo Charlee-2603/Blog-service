@@ -1,9 +1,11 @@
 package com.hunter.blog.modules.article.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hunter.blog.modules.article.model.ArticleDo;
 import com.hunter.blog.modules.article.service.IArticleService;
 import com.hunter.blog.modules.article.utils.UpFileUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,22 +35,39 @@ public class ArticleController {
     private IArticleService articleService;
 
 
-    /**
-     * 通过搜索内容查找文章
-     *
-     * @param condition
-     * @return
-     */
-    @RequestMapping(value = "/getArticleByCondition", method = RequestMethod.POST)
-    public String getArticleByCondition(@RequestParam(value = "condition", required = false) String condition) {
-        out.println("\033[36;4m" + "getArticleByCondition()方法执行了..." + "\033[0m");
-        out.println(condition);
-
-        Map<String, Object> data = new HashMap<>(10);
-        List<ArticleDo> articleList = articleService.getArticle(condition);
-        data.put("articleList", articleList);
-        return JSON.toJSONString(articleList);
+    @RequestMapping(value = "/details", method = RequestMethod.GET)
+    public String articleDetails(@Param("artId") int artId) {
+        out.println("\033[36;4m" + "articleDetails()方法执行了..." + "\033[0m");
+        ArticleDo article = articleService.getArticleById(artId);
+        Map<String, Object> map = new HashMap<>();
+        if (article == null) {
+            map.put("type", "error");
+            map.put("msg", "文章不存在");
+            return JSONObject.toJSONString(map);
+        }
+        map.put("type", "success");
+        map.put("msg", "ok");
+        map.put("Article", article);
+        return JSONObject.toJSONString(map);
     }
+
+
+//    /**
+//     * 通过搜索内容查找文章
+//     *
+//     * @param condition
+//     * @return
+//     */
+//    @RequestMapping(value = "/getArticleByCondition", method = RequestMethod.POST)
+//    public String getArticleByCondition(@RequestParam(value = "condition", required = false) String condition) {
+//        out.println("\033[36;4m" + "getArticleByCondition()方法执行了..." + "\033[0m");
+//        out.println(condition);
+//
+//        Map<String, Object> data = new HashMap<>(10);
+//        List<ArticleDo> articleList = articleService.getArticleList(condition);
+//        data.put("articleList", articleList);
+//        return JSON.toJSONString(articleList);
+//    }
 
     /**
      * 发布文章

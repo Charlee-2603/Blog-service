@@ -1,14 +1,9 @@
 package com.hunter.blog.modules.front.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.hunter.blog.modules.front.model.FrontDo;
 import com.hunter.blog.modules.front.service.IFrontService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -26,9 +21,12 @@ public class FrontController {
     private IFrontService frontService;
 
     @CrossOrigin
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(Map<String, Object> map) {
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public String index(Map<String, Object> map, Integer curPage, Integer pageSize) {
         System.out.println("\033[36;4m" + "index()方法执行了..." + "\033[0m");
+        System.out.println(curPage + "," + pageSize);
+        map.put("curPage",curPage);
+        map.put("pageSize",pageSize);
         Map data = frontService.setHtml(map);
         return JSON.toJSONString(data);
     }

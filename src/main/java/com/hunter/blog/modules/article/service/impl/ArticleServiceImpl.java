@@ -20,13 +20,21 @@ public class ArticleServiceImpl implements IArticleService {
     @Autowired
     private IArticleDao articleDao;
 
-    @Override
-    public List<ArticleDo> getArticle(String condition) {
-        return articleDao.getArticle(condition);
-    }
+//    @Override
+//    public List<ArticleDo> getArticleList(String condition) {
+//        return articleDao.getArticleList(condition,);
+//    }
 
     @Override
     public void saveArticle(ArticleDo articleDo) {
         articleDao.saveArticle(articleDo);
+    }
+
+    @Override
+    public ArticleDo getArticleById(int artId) {
+        // 更新浏览次数
+        articleDao.updateClickCount(artId);
+        ArticleDo article = articleDao.getArticleById(artId);
+        return article;
     }
 }

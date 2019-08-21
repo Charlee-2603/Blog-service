@@ -13,16 +13,26 @@ import java.util.List;
 
 public interface IArticleService {
 
-    /**
-     * 根据搜索内容返回文章列表
-     * @param condition
-     * @return
-     */
-    List<ArticleDo> getArticle(String condition);
+//    /**
+//     * 根据搜索内容返回文章列表
+//     *
+//     * @param condition
+//     * @return
+//     */
+//    List<ArticleDo> getArticleList(String condition);
 
     /**
      * 发布文章
+     *
      * @param articleDo
      */
     void saveArticle(ArticleDo articleDo);
+
+    /**
+     * 根据文章Id获取该文章的详情
+     * @param artId
+     * @return
+     */
+    ArticleDo getArticleById(int artId);
+
 }
