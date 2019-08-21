@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ChenLiang
@@ -31,10 +32,31 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
-    public ArticleDo getArticleById(int artId) {
+    public ArticleDo getArticleById(int artId, Map<String, Object> map) {
+
+        ArticleDo article = articleDao.getArticleById(artId);
+
         // 更新浏览次数
         articleDao.updateClickCount(artId);
-        ArticleDo article = articleDao.getArticleById(artId);
+
+        String articleCreateTime = article.getArtCreateTime();
+        System.out.println(articleCreateTime);
+        if (articleCreateTime != null && !"".equals(articleCreateTime)) {
+            // 根据文章Id查询上一篇文章id
+            Integer prvArtId = articleDao.getPrvArticleByCreateTime(articleCreateTime);
+            System.out.println("上一篇文章id:" + prvArtId);
+            if (prvArtId == null){
+                prvArtId = 0;
+            }
+            // 根据文章Id查询下一篇文章id
+            Integer nextArtId = articleDao.getNextArticleByCreateTime(articleCreateTime);
+            System.out.println("下一篇文章id:" + nextArtId);
+            if (nextArtId == null){
+                nextArtId = 0;
+            }
+            map.put("prvArtId", prvArtId);
+            map.put("nextArtId", nextArtId);
+        }
         return article;
     }
 }

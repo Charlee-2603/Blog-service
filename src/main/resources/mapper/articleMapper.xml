@@ -50,13 +50,49 @@
 
     <!--  查询文章总数  -->
     <select id="getArticleCount" resultType="java.lang.Integer">
-        select
-            count(art_id)
-        from
+        SELECT
+            COUNT(art_id)
+        FROM
             sys_article
-        where
+        WHERE
             is_deleted = 1
             AND art_status = "已发布"
+    </select>
+
+    <!-- 下一篇文章的Id -->
+    <select id="getNextArticleByCreateTime" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select
+        art_id
+        from
+        sys_article
+        <where>
+            <if test="articleCreateTime != null and articleCreateTime != ''">
+                art_createTime &lt; #{articleCreateTime}
+            </if>
+            AND is_deleted = 1
+            AND art_status = "已发布"
+        </where>
+        order by
+        art_createTime desc
+        limit 1
+    </select>
+
+    <!-- 上一篇文章的id -->
+    <select id="getPrvArticleByCreateTime" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select
+        art_id
+        from
+        sys_article
+        <where>
+            <if test="articleCreateTime != null and articleCreateTime != ''">
+                art_createTime > #{articleCreateTime}
+            </if>
+            AND is_deleted = 1
+            AND art_status = "已发布"
+        </where>
+        order by
+        art_createTime asc
+        limit 1
     </select>
 
 

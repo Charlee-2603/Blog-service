@@ -42,6 +42,11 @@ public class FrontServiceImpl implements IFrontService {
         map.put("columnBtn", frontDao.getSysConfig("columnBtn"));
 
         /**
+         * 文章总数
+         */
+        map.put("total", articleDao.getArticleCount());
+
+        /**
          * 获取首页文章
          */
         String condition = "";
@@ -49,26 +54,23 @@ public class FrontServiceImpl implements IFrontService {
         Integer pageSize = (Integer) map.get("pageSize");
         // 当前第几页
         Integer curPage = (Integer) map.get("curPage");
-        // 当前第几条
-        Integer pageNum = (curPage - 1) * pageSize;
-
-        System.out.println("当前页：" + pageNum + "," + pageSize);
-
         // 查询总文章数
-        int total = articleDao.getArticleCount();
-        System.out.println(total);
+        Integer total = (Integer) map.get("total");
+        // 一共多少页
         int pageTotal = 0;
-
         if (total % pageSize == 0) {
             pageTotal = total / pageSize;
         } else {
             pageTotal = (total / pageSize) + 1;
         }
+        // 当前第几条
+        Integer pageNum = (curPage - 1) * pageSize;
+        System.out.println("当前页：" + pageNum + "," + pageSize);
         System.out.println("pageTotal:" + pageTotal);
 
-        if (curPage > 0 && curPage < pageTotal) {
+        if (curPage < pageTotal) {
             map.put("articleList", articleDao.getArticleList(condition, pageNum, pageSize));
-        } else if (curPage <= 0) {
+        } else if (curPage <= 1) {
             map.put("articleList", articleDao.getArticleList(condition, 0, pageSize));
         } else {
             map.put("articleList", articleDao.getArticleList(condition, (pageTotal - 1) * pageSize, pageSize));

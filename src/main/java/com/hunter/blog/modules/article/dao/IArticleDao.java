@@ -18,12 +18,13 @@ import java.util.List;
 public interface IArticleDao {
     /**
      * 获取文章列表
+     *
      * @param condition
      * @param curPage
      * @param pageSize
      * @return
      */
-    List<ArticleDo> getArticleList(@Param("condition") String condition,@Param("curPage") Integer curPage, @Param("pageSize") Integer pageSize);
+    List<ArticleDo> getArticleList(@Param("condition") String condition, @Param("curPage") Integer curPage, @Param("pageSize") Integer pageSize);
 
     /**
      * 发布文章
@@ -42,6 +43,7 @@ public interface IArticleDao {
 
     /**
      * 点击量 + 1
+     *
      * @param artId
      * @return
      */
@@ -50,7 +52,24 @@ public interface IArticleDao {
 
     /**
      * 查询文章总数
+     *
      * @return
      */
     int getArticleCount();
+
+    /**
+     * 下一篇文章的Id
+     *
+     * @param articleCreateTime
+     * @return
+     */
+    Integer getNextArticleByCreateTime(@Param("articleCreateTime") String articleCreateTime);
+
+    /**
+     * 上一篇文章的id
+     *
+     * @param articleCreateTime
+     * @return
+     */
+    Integer getPrvArticleByCreateTime(@Param("articleCreateTime") String articleCreateTime);
 }

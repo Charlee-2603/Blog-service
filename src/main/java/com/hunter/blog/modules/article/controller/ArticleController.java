@@ -34,12 +34,18 @@ public class ArticleController {
     @Autowired
     private IArticleService articleService;
 
-
+    /**
+     * 文章详细信息
+     *
+     * @param artId
+     * @return
+     */
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public String articleDetails(@Param("artId") int artId) {
-        out.println("\033[36;4m" + "articleDetails()方法执行了..." + "\033[0m");
-        ArticleDo article = articleService.getArticleById(artId);
-        Map<String, Object> map = new HashMap<>();
+        out.println("\033[36;4m" + "文章详细信息 articleDetails()方法执行了..." + "\033[0m");
+        Map<String, Object> map = new HashMap<>(10);
+        ArticleDo article = articleService.getArticleById(artId,map);
+
         if (article == null) {
             map.put("type", "error");
             map.put("msg", "文章不存在");
@@ -69,6 +75,7 @@ public class ArticleController {
 //        return JSON.toJSONString(articleList);
 //    }
 
+
     /**
      * 发布文章
      *
@@ -81,7 +88,6 @@ public class ArticleController {
         if (!articleFile.isEmpty()) {
             try {
                 String artTitleImgURL = UpFileUtil.setUpFileName(articleFile.getOriginalFilename(), articleFile, request);
-
                 articleDo.setArtCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
                 articleDo.setArtTitleImgURL(artTitleImgURL);
                 articleService.saveArticle(articleDo);

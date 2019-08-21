@@ -3,6 +3,7 @@ package com.hunter.blog.modules.article.service;
 import com.hunter.blog.modules.article.model.ArticleDo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ChenLiang
@@ -12,14 +13,6 @@ import java.util.List;
  */
 
 public interface IArticleService {
-
-//    /**
-//     * 根据搜索内容返回文章列表
-//     *
-//     * @param condition
-//     * @return
-//     */
-//    List<ArticleDo> getArticleList(String condition);
 
     /**
      * 发布文章
@@ -31,8 +24,8 @@ public interface IArticleService {
     /**
      * 根据文章Id获取该文章的详情
      * @param artId
+     * @param map
      * @return
      */
-    ArticleDo getArticleById(int artId);
-
+    ArticleDo getArticleById(int artId, Map<String,Object> map);
 }
