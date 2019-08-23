@@ -15,7 +15,6 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.lang.System.out;
@@ -27,8 +26,8 @@ import static java.lang.System.out;
  * @time 2019/8/14 9:37
  */
 @RestController
+@RequestMapping(value = "/sys/article")
 @CrossOrigin
-@RequestMapping("/sys/article")
 public class ArticleController {
 
     @Autowired
@@ -44,7 +43,7 @@ public class ArticleController {
     public String articleDetails(@Param("artId") int artId) {
         out.println("\033[36;4m" + "文章详细信息 articleDetails()方法执行了..." + "\033[0m");
         Map<String, Object> map = new HashMap<>(10);
-        ArticleDo article = articleService.getArticleById(artId,map);
+        ArticleDo article = articleService.getArticleById(artId, map);
 
         if (article == null) {
             map.put("type", "error");
@@ -57,34 +56,18 @@ public class ArticleController {
         return JSONObject.toJSONString(map);
     }
 
-
-//    /**
-//     * 通过搜索内容查找文章
-//     *
-//     * @param condition
-//     * @return
-//     */
-//    @RequestMapping(value = "/getArticleByCondition", method = RequestMethod.POST)
-//    public String getArticleByCondition(@RequestParam(value = "condition", required = false) String condition) {
-//        out.println("\033[36;4m" + "getArticleByCondition()方法执行了..." + "\033[0m");
-//        out.println(condition);
-//
-//        Map<String, Object> data = new HashMap<>(10);
-//        List<ArticleDo> articleList = articleService.getArticleList(condition);
-//        data.put("articleList", articleList);
-//        return JSON.toJSONString(articleList);
-//    }
-
-
     /**
      * 发布文章
      *
      * @param articleDo
+     * @param articleFile
+     * @param request
      * @return
      */
-    @RequestMapping(value = "/postArticle", method = RequestMethod.POST)
-    public String postArticle(@ModelAttribute ArticleDo articleDo, @RequestParam("articleFile") MultipartFile articleFile, HttpServletRequest request) {
-        out.println("\033[22;4m" + "postArticle()方法执行了..." + "\033[0m");
+    @RequestMapping(value = "/postArticle", method = RequestMethod.POST, headers = "Content-Type= multipart/form-data")
+    public String postArticle(@ModelAttribute ArticleDo articleDo,
+                              @RequestParam(value = "articleFile", required = false) MultipartFile articleFile,
+                              HttpServletRequest request) {
         if (!articleFile.isEmpty()) {
             try {
                 String artTitleImgURL = UpFileUtil.setUpFileName(articleFile.getOriginalFilename(), articleFile, request);

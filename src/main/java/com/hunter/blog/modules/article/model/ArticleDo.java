@@ -1,12 +1,12 @@
 package com.hunter.blog.modules.article.model;
 
-import org.springframework.stereotype.Component;
+        import org.springframework.stereotype.Component;
 
 /**
- * @description 文章实体类
  * @author ChenLiang
- * @data: 2019/8/14 9:41
  * @version 1.0.0
+ * @description 文章实体类
+ * @data: 2019/8/14 9:41
  */
 @Component
 public class ArticleDo {
@@ -15,6 +15,7 @@ public class ArticleDo {
     private String artTitle;
     private String artCreateTime;
     private String artTitleImgURL;
+    private String artIntroduction;
     private String artContent;
     private String artStatus;
     private int artClickCount;
@@ -101,6 +102,14 @@ public class ArticleDo {
         this.artComment = artComment;
     }
 
+    public String getArtIntroduction() {
+        return artIntroduction;
+    }
+
+    public void setArtIntroduction(String artIntroduction) {
+        this.artIntroduction = artIntroduction;
+    }
+
     @Override
     public String toString() {
         return "ArticleDo{" +
@@ -109,6 +118,7 @@ public class ArticleDo {
                 ", artTitle='" + artTitle + '\'' +
                 ", artCreateTime='" + artCreateTime + '\'' +
                 ", artTitleImgURL='" + artTitleImgURL + '\'' +
+                ", artIntroduction='" + artIntroduction + '\'' +
                 ", artContent='" + artContent + '\'' +
                 ", artStatus='" + artStatus + '\'' +
                 ", artClickCount=" + artClickCount +
