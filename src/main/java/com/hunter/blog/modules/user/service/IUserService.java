@@ -1,19 +1,22 @@
 package com.hunter.blog.modules.user.service;
 
-import com.hunter.blog.modules.user.model.UserDo;
+import com.hunter.blog.modules.user.model.UserDto;
+
+import java.util.Map;
 
 /**
- * @description 用户service接口类
  * @author ChenLiang
- * @data: 2019/8/26 8:58
  * @version 1.0.0
+ * @description 用户service接口类
+ * @data: 2019/8/26 8:58
  */
 public interface IUserService {
 
     /**
-     * 用户登录（判断用户是否存在）
-     * @param userDo
+     * 用户登录
+     * @param userDto
+     * @param map
      * @return
      */
-    int userLogin(UserDo userDo);
+    Map userLogin(UserDto userDto, Map<String, Object> map);
 }

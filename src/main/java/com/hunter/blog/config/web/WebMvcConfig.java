@@ -54,15 +54,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry resourceHandlerRegistry) {
-
+        resourceHandlerRegistry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                 .allowedOrigins("*")
-                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
-                .maxAge(3600)
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE")
                 .allowCredentials(true);
     }
 
